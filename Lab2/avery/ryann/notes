@@ -1,0 +1,27 @@
+read file
+create set of stopwords
+
+read txt files --> split into list of individual words
+exclude stopwords from each list
+
+#dict --> implementation of associative array
+#set --> implementation of hash
+
+special cases 
+    empty files
+    divide by zero
+    empty list for stopwords 
+
+def load_stopwords
+    remove whitespace, lowercase
+    create set
+
+def load_words(filename, stopwords)
+    remove stopwords 
+
+common words = set txt 1 & set txt 2
+
+#this list here
+    read file
+    remove whitespace, lowercase
+    create set

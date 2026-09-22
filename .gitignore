@@ -1,10 +1,6 @@
 census_dataset.txt
 .DS_Store
 
-stopwords.txt
-textA.txt
-textB.txt
-
 census_dataset.txt
 student_dataset_corrupted.txt
 student_dataset.txt

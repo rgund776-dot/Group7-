@@ -1,36 +1,3 @@
-# def create_stop_words(file_path: str) -> set:
-#     try:
-#         stop_words = set()
-#         input_file = open(file_path, 'r')
-#         for line in input_file:
-#             word = line.strip().lower()
-#             if word:
-#                 stop_words.add(word)
-#         return stop_words
-#     # except Exception:
-#     #     raise Exception
-#     finally:
-#         input_file.close()
-
-# def parse_text(file_path: str, stop_words: set) -> list:
-#     punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-#     try:
-#         input_file = open(file_path, 'r')
-#         words = []
-#         for line in input_file:
-#             line = line.strip()
-#             if not line:
-#                 continue
-#             for word in line.split():
-#                 cleaned = word.strip(punctuation).lower()
-#                 if cleaned and cleaned not in stop_words:
-#                     words.append(cleaned)
-#         return words
-#     # except Exception:
-#     #     raise Exception
-#     finally:
-#         input_file.close()
-
 def create_stop_words(file_path: str) -> set:
     stop_words = set()
     with open(file_path, 'r') as input_file:

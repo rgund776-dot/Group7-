@@ -70,7 +70,7 @@ def to_json(obj):
 def save_to_json_file(data, filename):
     # save a Python object to a JSON file
     base, ext = filename.rsplit(".", 1)
-    new_filename = f"{base}_json.{ext}"   
+    new_filename = f"./{base}_json.{ext}"   
     with open(new_filename, "w") as file:
         json_str = to_json(data)
         file.write(json_str)

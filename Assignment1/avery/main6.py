@@ -1,5 +1,3 @@
-from fileinput import filename
-
 from file_IO import load_from_csv, load_from_html
 from data_processing import print_stats, to_json, save_to_json_file
 
@@ -79,8 +77,8 @@ def main(filename):
 
 # main('./test/not_data.txt')
 # main('./test/census_err.txt')
-# main('./test/student_test.txt')
-main('./test/census_test.txt')
+main('./test/student_test.txt')
+# main('./test/census_test.txt')
 
 # main('./data/student_dataset.txt')
 # main('./data/student_dataset_corrupted.txt')

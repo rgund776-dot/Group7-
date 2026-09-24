@@ -8,7 +8,7 @@ def load_from_html(filename: str) -> list[dict]:
     :return: the dataset as a list of dictionaries - one dict per object in the file
             each dictionary should map column names to values
     """    
-    print(f'loading html file: {filename}')
+    # print(f'loading html file: {filename}')
     with open(filename, 'r') as file:
         contents = file.read()
         all_rows = []
@@ -53,8 +53,7 @@ def load_from_html(filename: str) -> list[dict]:
                 try:
                     this_value = float(this_value)
                 except ValueError:
-                    raise ValueError(f'invalid number in row: {row_text}')
-                    # pass
+                    pass
 
                 this_row_dict[this_column] = this_value
             
@@ -64,7 +63,7 @@ def load_from_html(filename: str) -> list[dict]:
 
 
 def load_from_csv(filename: str) -> list[dict]:
-    print(f'loading csv file: {filename}')
+    # print(f'loading csv file: {filename}')
     with open(filename, 'r') as file:
         contents = file.read().split('\n')
         # print(f'contents: {contents}')
@@ -86,7 +85,6 @@ def load_from_csv(filename: str) -> list[dict]:
             # print(f'row_text: {row_text}')
 
             # check the row has the right number of values in it
-            print(f'len(values): {len(values)}, len(columns): {len(columns)}')
             if len(values) != len(columns):
                 # raise Exception(f'wrong number of values in row: {row_text}')
                 raise AttributeError(f'wrong number of values in row: {row_text}')
@@ -100,7 +98,7 @@ def load_from_csv(filename: str) -> list[dict]:
                 try:
                     this_value = float(this_value)
                 except ValueError:
-                    raise ValueError(f'invalid number in row: {row_text}')
+                    raise ValueError(f'wrong number of values in row: {row_text}')
                     # pass
 
                 this_row_dict[this_column] = this_value

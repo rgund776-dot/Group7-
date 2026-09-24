@@ -1,7 +1,11 @@
 def load_stopwords(filename):
-    with open(filename, 'r') as file:
-        stopwords = {word.strip().lower() for word in file }
-    return stopwords
+    try:
+        with open(filename, 'r') as file:
+            stopwords = {word.strip().lower() for word in file }
+        return stopwords
+    except FileNotFoundError:
+        FileNotFoundError(f"Error: The file '{filename}' was not found.")
+        
 
 '''
 text = "Hello, world! How's it going?"
@@ -27,6 +31,12 @@ def load_words(filename, stopwords):
                         words.append(cleaned)
     return words
 
+def frequency(count, total_words):
+    try:
+        return round(count / total_words, 5)
+    except ZeroDivisionError:
+        return ZeroDivisionError('Cannot divide by zero, total_words is 0')
+
 def term_frequency(words):
     word_dict = {}
     for word in words:
@@ -35,7 +45,7 @@ def term_frequency(words):
         else:
             word_dict[word] = 1
     total_words = len(words)
-    freq_dict = {word: round(count / total_words, 5) for word, count in word_dict.items()}
+    freq_dict = {word: frequency(count, total_words) for word, count in word_dict.items()}
     return freq_dict
 
 def main():

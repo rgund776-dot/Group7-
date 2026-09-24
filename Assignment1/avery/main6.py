@@ -35,23 +35,6 @@ def detect_file_type(filename: str) -> str:
 
     raise ValueError('Error, data must be in valid CSV or HTML format')
 
-
-
-# load data
-# filename = './data/student_dataset.txt'
-# filename = './data/student_dataset_corrupted.txt'
-# filename = './data/census_dataset.txt'
-
-
-# table = load_from_html(filename)
-# print(f'table: {table}')
-
-# print table statistics
-# print_stats(table)
-# detect_file_type(filename)
-    # filename = './test/student_test.txt'
-    # filename = './test/census_test.txt'
-
 def main(filename):
 
     try:

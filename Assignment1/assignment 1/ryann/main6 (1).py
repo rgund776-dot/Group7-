@@ -24,24 +24,3 @@ table = load_from_html(filename)
 
 # print table statistics 
 print_stats(table)
-
-"""
-read tabular data set from file 
-id format (csv, html)
-parse accordingly
-if not csv hmtl raise exception "Error, data must in valid CSV or HTML format"
-student dat --> html
-census --> csv 
-
-stores tabular data as list of dictionarires
-
-print out simple stat analysis --> print_stats() function
-    text columns --> column name, most common value
-    numerical column --> column name, avg of all values in column
-
-formatted:
-    Name1: average 2342342
-    Name2: most common value is 'filler'
-
-resaves data set in json format
-"""

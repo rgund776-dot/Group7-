@@ -12,8 +12,12 @@ def print_stats(data: list[dict]) -> None:
         # determine if this is a text or numeric column
         if type(data[0][column]) == float:
             # process this as a numeric column
-            pass # not in this partial solution :)
-
+            total = 0.0
+            for row in data:
+                total += row[column]
+            average = total / len(data)
+            print(f"{column}: average {round(average, 2)}")
+        
         else:  # this is a text column
             
             # build a dict that counts number of times we've seen each value
@@ -32,5 +36,3 @@ def print_stats(data: list[dict]) -> None:
             
             #print(f"most common value for {column}: {most_common}") #add column header before eg StudentID: most common value...
             print(f"{column}: most common value is {most_common}")
-
-#need to add part for numerical columns

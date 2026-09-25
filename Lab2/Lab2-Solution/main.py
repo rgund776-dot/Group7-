@@ -3,7 +3,7 @@ def load_stopwords(filename):
         with open(filename, 'r') as file:
             stopwords = {word.strip().lower() for word in file }
         return stopwords
-    except FileNotFoundError:
+    except:
         FileNotFoundError(f"Error: The file '{filename}' was not found.")
         
 
@@ -20,16 +20,20 @@ print(clean)  # "Hello world Hows it going"
 def load_words(filename, stopwords):
     punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
     words = []
-    with open(filename, 'r') as input_file:
-            for line in input_file:
-                line = line.strip()
-                if not line:
-                    continue
-                for word in line.split():
-                    cleaned = word.strip(punctuation).lower()
-                    if cleaned and cleaned not in stopwords:
-                        words.append(cleaned)
-    return words
+    try:
+        with open(filename, 'r') as input_file:
+                for line in input_file:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    for word in line.split():
+                        cleaned = word.strip(punctuation).lower()
+                        if cleaned and cleaned not in stopwords:
+                            words.append(cleaned)
+        return words
+    except:
+        raise FileNotFoundError(f"Error: The file '{filename}' was not found.")
+
 
 def frequency(count, total_words):
     try:

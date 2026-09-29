@@ -62,3 +62,10 @@ main()
 
 #print(f"The average BMI of all patients seen is", avg_BMI)
 #print(f"The busiest month is", busy_month)
+
+
+======= Patient Exam Stats =======
+number of exams: 1000
+average BMI: 
+busiest month
+==================================

@@ -9,6 +9,9 @@ def is_float(value):
     except ValueError:
         return False
 
+def patient_exam():
+    pass
+
 def parse_file(file_path: str) -> list:
     with open(file_path, 'r') as file:
         lines = file.read()
@@ -64,11 +67,17 @@ def busiest_month(exams: list) -> int:
 
 def main():
     try:
-        exams = parse_file('./patient_data.csv')
+        # exams = parse_file('./patient_data.csv')
+        # exams = parse_file('./test/incorrect_date.csv')
+        # exams = parse_file('./test/incorrect_weight.csv')
+        exams = parse_file('./test/incorrect_value.csv')
         average_bmi = avg_bmi(exams)
-        print(f'Average BMI: {average_bmi:.2f}')
         busiest_month_num = busiest_month(exams)
+
+        print('======== Summary ==============')
+        print(f'Average BMI: {average_bmi:.2f}')
         print(f'Busiest Month: {busiest_month_num}')
+        print('===============================')
     except Exception as e:
         raise Exception(f'error in file: {e}')
 

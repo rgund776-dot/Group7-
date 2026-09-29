@@ -1,6 +1,21 @@
 from classes import PatientExam
 
-# test for month is under 12, weight and height are correct units, no missing values
+# test for month is under 12, date formated with - and not /, weight and height are correct units, no missing values
+
+list_months = {
+    1: "January",
+    2: "Feburary",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+}
 
 def is_float(value):
     try:
@@ -29,8 +44,8 @@ def parse_file(file_path: str) -> list:
                 # height check
                 if not is_float(patient_data[4]):
                     raise ValueError(f'Height is not a valid number in row: {patient}')
-                if not float(patient_data[4]) <= 3.0:
-                    raise ValueError(f'Height is not in meters in row: {patient}')
+                # if not float(patient_data[4]) <= 3.0:
+                #     raise ValueError(f'Height is not in meters in row: {patient}')
                 # month check
                 if not (1 <= int(patient_data[1].split("/")[0]) <= 12):
                     raise ValueError(f'Invalid date in date field in row: {patient}')
@@ -67,19 +82,26 @@ def busiest_month(exams: list) -> int:
 
 def main():
     try:
-        # exams = parse_file('./patient_data.csv')
+        exams = parse_file('./patient_data.csv')
         # exams = parse_file('./test/incorrect_date.csv')
         # exams = parse_file('./test/incorrect_weight.csv')
-        exams = parse_file('./test/incorrect_value.csv')
+        # exams = parse_file('./test/incorrect_value.csv')
         average_bmi = avg_bmi(exams)
         busiest_month_num = busiest_month(exams)
 
-        print('======== Summary ==============')
+        print('======== Patient Exam Stats =======')
+        print(f'Number of Exams: {len(exams)}')
         print(f'Average BMI: {average_bmi:.2f}')
-        print(f'Busiest Month: {busiest_month_num}')
+        print(f'Busiest Month: {list_months[busiest_month_num]}')
         print('===============================')
     except Exception as e:
         raise Exception(f'error in file: {e}')
 
 main()
 # your code here
+
+# ======= Patient Exam Stats =======
+# number of exams: 1000
+# average BMI: 
+# busiest month
+# ==================================

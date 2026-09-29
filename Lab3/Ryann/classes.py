@@ -1,3 +1,17 @@
+list_months = {
+    "01": "January",
+    "02": "Feburary",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+}
 
 class PatientExam:
     def __init__(self, exam_id: int, date: str, name: str, weight: int, height: float):
@@ -9,10 +23,6 @@ class PatientExam:
 
     def get_BMI(self, height: float, weight: float) -> None:
         return self.weight/(self.height**2)
-    #make list of bmi? 
         
     def get_exam_month(self, exam_month: int) -> None:
-
-
-#date = month/day/year eg 12/19/2002
-#part that changes month number to month name?
+        return list_months[self.date]

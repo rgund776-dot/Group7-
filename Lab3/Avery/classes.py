@@ -12,3 +12,9 @@ class PatientExam:
 
     def get_exam_month(self):
         return int(self.date.split("/")[0])
+    
+    def __str__(self):
+        return f'PatientExam(exam_id: {self.exam_id}, date: {self.date}, name: {self.name}, weight: {self.weight}, height: {self.height})'
+    
+    def __repr__(self):
+        return f'PatientExam(exam_id: {self.exam_id}, date: {self.date}, name: {self.name}, weight: {self.weight}, height: {self.height})'

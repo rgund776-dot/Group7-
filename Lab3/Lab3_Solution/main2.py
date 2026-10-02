@@ -1,7 +1,5 @@
 from classes import PatientExam
 
-# test for month is under 12, date formated with - and not /, weight and height are correct units, no missing values
-
 list_months = {
     1: "January",
     2: "Feburary",
@@ -24,29 +22,6 @@ def is_float(value):
     except ValueError:
         return False
 
-def patient_exam(data_list: list) -> PatientExam:
-    # check for missing values
-    if len(data_list) != 5:
-        raise ValueError(f'Invalid number of values in row: {data_list}')
-    # weight check
-    if not data_list[3].isdigit():
-        raise ValueError(f'Weight is not an integer in row: {data_list}')
-    # height check
-    if not is_float(data_list[4]):
-        raise ValueError(f'Height is not a valid number in row: {data_list}')
-    # month check
-    if not (1 <= int(data_list[1].split("/")[0]) <= 12):
-        raise ValueError(f'Invalid date in date field in row: {data_list}')
-
-    exam = PatientExam(
-        int(data_list[0]),
-        data_list[1],
-        data_list[2],
-        int(data_list[3]),
-        float(data_list[4])
-    )
-    return exam
-
 def parse_file(file_path: str) -> list:
     with open(file_path, 'r') as file:
         lines = file.read()
@@ -54,7 +29,16 @@ def parse_file(file_path: str) -> list:
         for patient in lines.splitlines()[1:]:
             # print(f'patient: {patient}')
             patient_data = patient.split(',')
-            exam = patient_exam(patient_data)
+            # exam = patient_exam(patient_data)
+            # if len(patient_data) != 5:
+            #     raise ValueError(f'Incorrect number of values in row: {patient}')
+            exam = PatientExam(
+                int(patient_data[0]),
+                patient_data[1],
+                patient_data[2],
+                int(patient_data[3]),
+                float(patient_data[4])
+            )
             exams.append(exam)
     return exams
 
@@ -78,10 +62,10 @@ def busiest_month(exams: list) -> int:
 
 def main():
     try:
-        # exams = parse_file('./patient_data.csv')
+        exams = parse_file('./patient_data.csv')
         # exams = parse_file('./test/incorrect_date.csv')
         # exams = parse_file('./test/incorrect_weight.csv')
-        exams = parse_file('./test/incorrect_value.csv')
+        # exams = parse_file('./test/incorrect_value.csv')
         average_bmi = avg_bmi(exams)
         busiest_month_num = busiest_month(exams)
 

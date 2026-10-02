@@ -11,6 +11,8 @@ class PatientExam:
         return self.weight / (self.height ** 2)
 
     def get_exam_month(self):
+        if not (1 <= int(self.date.split("/")[0]) <= 12):
+            raise ValueError(f'Invalid date in date field in row: {self.date}')
         return int(self.date.split("/")[0])
     
     def __str__(self):

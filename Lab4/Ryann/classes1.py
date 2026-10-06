@@ -25,10 +25,12 @@ class Team:
     def add_driver(self, driver: Driver) -> None:
        
         self.drivers.append(driver)
-        
+        #drivers list[Driver]
 
     def get_total_points(self) -> int:
-       
+        """
+        :return: sum of points scored by this team's Drivers
+        """
         points = 0
 
         for driver in self.drivers:
@@ -43,7 +45,7 @@ class Team:
         It should return a string that describes this Team, for example:
         "FERRARI with drivers Carlos Sainz, Charles Leclerc. Total pts: 406"
         """
-        return f"{self.name} with drivers {self.drivers}. Total pts: {get_total_points}"
+        pass # your code here
     
     def __lt__(self, other) -> bool:
         """
@@ -52,5 +54,25 @@ class Team:
         In this case, it should return True if this team has less total points that the other.
         :param other: another Team object
         :return: True if this Team has less points than other
+
         """
         pass # your code here
+
+
+
+
+""""
+test 1 --> normal load 10 teams, verify driver and pts
+test 2 --> special create team with 3 drivers, verify total and sorting
+test 3 --> use invalid points value, verify ValueError
+
+
+import driver, team, csv
+read fl_points.csv
+create teams and drivers
+store teams in dictionary
+create team list
+calculate team totals
+sort teams using It()
+print sorted teams
+"""

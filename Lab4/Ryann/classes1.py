@@ -28,9 +28,7 @@ class Team:
         
 
     def get_total_points(self) -> int:
-        """
-        :return: sum of points scored by this team's Drivers
-        """
+       
         points = 0
 
         for driver in self.drivers:
@@ -45,7 +43,7 @@ class Team:
         It should return a string that describes this Team, for example:
         "FERRARI with drivers Carlos Sainz, Charles Leclerc. Total pts: 406"
         """
-        pass # your code here
+        return f"{self.name} with drivers {self.drivers}. Total pts: {get_total_points}"
     
     def __lt__(self, other) -> bool:
         """

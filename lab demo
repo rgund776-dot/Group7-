@@ -61,3 +61,43 @@ sorted_test_teams = sorted(test_teams)
 
 for team in sorted_test_teams:
 	print(team)
+
+#test 3 error case
+
+invalid_data = [
+	["Driver A", "Test Team", "100"]
+	["Driver B", "Test Team", "abc"]
+]
+
+with open("invalid_f1.csv", "w", newline="") as file:
+	writer = csv.writer(file)
+	writer.writerow(["Driver", "Team", "Points"])
+	writer.writerows(invalid_data)
+
+print("Invalid test file created.")
+
+#test error
+
+try:
+	test_teams = {}
+
+	with open("invalid_f1.csv", "r") as file:
+	read = csv.reader(file)
+	next(reader)
+	
+	for row in reader:
+		driver_name = row[0]
+		team_name = row[1]
+		points = int(row[2])
+
+		if team_name not on team:
+			team[team_name] = Team(team_name)
+
+		driver = Driver(driver_name, points)
+		teams[team_name].add_driver(driver)
+	
+	print("Number of Teams:", len(teams))
+
+except ValueError as e:
+	print("Error dectected:", e)
+

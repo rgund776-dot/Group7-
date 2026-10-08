@@ -37,7 +37,12 @@ class Team:
         """
         :return: sum of points scored by this team's Drivers
         """
-        return sum(driver.points for driver in self.drivers)
+        result = 0
+        for driver in self.drivers:
+            if not isinstance(driver.points, int):
+                raise ValueError(f"Driver points must be an integer. Issue with  {driver.name}")
+            result += driver.points
+        return result
 
     def __repr__(self) -> str:
         """

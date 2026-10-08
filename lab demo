@@ -23,3 +23,10 @@ with open("data/f1_point.csv", "r") as file:
 	print("Number of Teams:", len(teams))
 
 
+#verify object
+
+red_bull = teams["RED BULL RACING HONDA RBPT"]
+
+print("Team:", red_bull.name)
+print("Drivers:", red_bull.drivers)
+

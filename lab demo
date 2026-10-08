@@ -30,3 +30,34 @@ red_bull = teams["RED BULL RACING HONDA RBPT"]
 print("Team:", red_bull.name)
 print("Drivers:", red_bull.drivers)
 
+#test case 2 - special case (three drivers)
+
+special_team = Team("Test Racing")
+
+special_team.add_driver(Driver("Driver A", 100))
+special_team.add_driver(Driver("Driver B", 50))
+special_team.add_driver(Driver("Driver C", 25))
+
+print(special_team)
+print("Number of drivers:", len(special_team.drivers))
+print("Total points:", special_team.get_total_points())
+
+#test sorting
+
+team1 = Team("Team A")
+team1.add_driver(Driver("Driver A", 100))
+
+
+team2 = Team("Team B")
+team2.add_driver(Driver("Driver B", 250))
+
+
+team3 = Team("Team C")
+team3.add_driver(Driver("Driver C", 50))
+
+test_teams = [team1, team2, team3]
+
+sorted_test_teams = sorted(test_teams)
+
+for team in sorted_test_teams:
+	print(team)

@@ -45,46 +45,48 @@ def main():
     test_other = historical.get_row(1)
     mode_predictor.predict(test_patient)
 
-    nn_predictor.distance(test_patient, test_other)
+    # nn_predictor.distance(test_patient, test_other)
     nn_predictor.predict(test_patient)
 
-    # mode_predictions = []
-    # nn_predictions = []
+    mode_predictions = []
+    nn_predictions = []
 
 
-    # # Predict every new case
-    # for i in range(len(new_cases.data)):
+    # Predict every new case
+    for i in range(len(new_cases.data)):
 
-    #     patient = new_cases.get_row(i)
+        patient = new_cases.get_row(i)
         
 
-    #     try:
-    #         mode_predictions.append(
-    #             mode_predictor.predict(patient)
-    #         )
+        try:
+            mode_predictions.append(
+                mode_predictor.predict(patient)
+            )
 
-    #         nn_predictions.append(
-    #             nn_predictor.predict(patient)
-    #         )
+            nn_predictions.append(
+                nn_predictor.predict(patient)
+            )
 
-    #     except OutOfSampleError as e:
-    #         print(e)
-
-
-    # # Get true labels
-    # actual_labels = labels.get_column("TumorType")
+        except OutOfSampleError as e:
+            print(e)
 
 
-    # # Accuracy
-    # print(
-    #     "Mode accuracy:",
-    #     calculate_accuracy(mode_predictions, actual_labels)
-    # )
+    # Get true labels
+    actual_labels = labels.get_column("TumorType")
+    print("Mode:",mode_predictions)
 
-    # print(
-    #     "Nearest Neighbor accuracy:",
-    #     calculate_accuracy(nn_predictions, actual_labels)
-    # )
+    print("Nearest Neighbor:", nn_predictions)
+
+    # Accuracy
+    print(
+        "Mode accuracy:",
+        calculate_accuracy(mode_predictions, actual_labels)
+    )
+
+    print(
+        "Nearest Neighbor accuracy:",
+        calculate_accuracy(nn_predictions, actual_labels)
+    )
 
 
 if __name__ == "__main__":

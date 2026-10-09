@@ -34,14 +34,14 @@ class MajorityClassPredictor(Predictor):
         TumorType_column = self.historical_data.get_column("TumorType")
         # print(TumorType_column)
         counts = {
-            "benign" : 0, # 0.0
-            "malignant": 0 #1.0
+            0.0 : 0, # benign
+            1.0: 0 # malignant
         }
         for value in TumorType_column:
                 if value == 0.0:
-                    counts["benign"] += 1
+                    counts[0.0] += 1
                 if value == 1.0:
-                    counts["malignant"] += 1
+                    counts[1.0] += 1
 
         self.majority_class = max(counts, key=counts.get)
         # print(counts)
@@ -70,7 +70,11 @@ class NearestNeighborPredictor(Predictor):
         """
         tumor_type = None
         smallest_distance = None
-        patient2 = self.historical_data.get_row(i)
         for i in range(len(self.historical_data.data)):
-            distance
-        pass
+            patient2 = self.historical_data.get_row(i)
+            distance = self.distance(patient, patient2)
+            # print(patient2['TumorType'])
+            if smallest_distance is None or distance < smallest_distance:
+                smallest_distance = distance
+                tumor_type = patient2['TumorType']
+        return tumor_type

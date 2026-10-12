@@ -12,6 +12,16 @@ class Predictor(ABC):
         """
         self.historical_data = historical_data
 
+    def check_sample(self, patient):
+        features = [name for name in self.historical_data.get_column_names() if name != "TumorType"]
+        for feature in features:
+            feature_min = self.historical_data.get_column_min(feature)
+            feature_max = self.historical_data.get_column_max(feature)
+            patient_value = patient[feature]
+            if patient_value < feature_min or patient_value > feature_max:
+                raise OutOfSampleError(
+                    f"{feature} with value {patient_value} is outside of historical range[{feature_min}, {feature_max}]")
+
     @abstractmethod
     def predict(self, patient):
         """

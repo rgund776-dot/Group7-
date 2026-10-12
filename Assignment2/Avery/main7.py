@@ -10,7 +10,12 @@ def calculate_accuracy(predictions, actual):
     """
     Calculate prediction accuracy.
     """
-    pass
+    lst_pairs = []
+    for index, value in enumerate(predictions):
+        lst_pairs.append((value, actual[index]))
+
+    correct = [1 for p, a in lst_pairs if p == a]
+    return sum(correct)/len(lst_pairs)
 
 
 def main():
@@ -41,12 +46,12 @@ def main():
     nn_predictor = NearestNeighborPredictor(historical)
 
 
-    test_patient = new_cases.get_row(1)
-    test_other = historical.get_row(1)
-    mode_predictor.predict(test_patient)
+    # test_patient = new_cases.get_row(1)
+    # test_other = historical.get_row(1)
+    # mode_predictor.predict(test_patient)
 
     # nn_predictor.distance(test_patient, test_other)
-    nn_predictor.predict(test_patient)
+    # nn_predictor.predict(test_patient)
 
     mode_predictions = []
     nn_predictions = []
@@ -73,9 +78,10 @@ def main():
 
     # Get true labels
     actual_labels = labels.get_column("TumorType")
-    print("Mode:",mode_predictions)
 
-    print("Nearest Neighbor:", nn_predictions)
+    # print("Mode:",mode_predictions)
+
+    # print("Nearest Neighbor:", nn_predictions)
 
     # Accuracy
     print(

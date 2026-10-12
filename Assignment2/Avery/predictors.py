@@ -41,6 +41,7 @@ class MajorityClassPredictor(Predictor):
         """
         Always return the most common historical TumorType.
         """
+        self.check_sample(patient)  
         TumorType_column = self.historical_data.get_column("TumorType")
         # print(TumorType_column)
         counts = {
@@ -78,6 +79,7 @@ class NearestNeighborPredictor(Predictor):
         """
         Find closest historical patient and return its TumorType.
         """
+        self.check_sample(patient)  
         tumor_type = None
         smallest_distance = None
         for i in range(len(self.historical_data.data)):

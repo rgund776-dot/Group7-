@@ -45,14 +45,6 @@ def main():
     mode_predictor = MajorityClassPredictor(historical)
     nn_predictor = NearestNeighborPredictor(historical)
 
-
-    # test_patient = new_cases.get_row(1)
-    # test_other = historical.get_row(1)
-    # mode_predictor.predict(test_patient)
-
-    # nn_predictor.distance(test_patient, test_other)
-    # nn_predictor.predict(test_patient)
-
     mode_predictions = []
     nn_predictions = []
 

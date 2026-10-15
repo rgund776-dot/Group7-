@@ -2,7 +2,7 @@ import csv
 
 
 class DataTable:
-    def __init__(self, csv_path: str):
+    def __init__(self, csv_path: str, reference_data=None):
         """
         Load CSV data into memory.
         Convert all values to float.
@@ -27,18 +27,29 @@ class DataTable:
                 self.data.append(new_row)
         #replace missing values with averages 
         for column in self.column_names:
-            values = []
-            
-            for row in self.data:
-                if row[column] is not None:
-                    values.append(row[column])
-            
-            if len(values) > 0:
-                average = sum(values) / len(values)
+            if column == "TumorType":
+                continue
+                
+            if reference_data is None:
+                values = [] 
                 
                 for row in self.data:
-                    if row[column] is None:
-                        row[column] = average 
+                    if row[column] is not None:
+                        values.append(row[column])
+                
+                if len(values) == 0:
+                    continue 
+                
+                average = sum(values) / len(values)
+                
+            else:
+                average = reference_data.get_column_average(column)
+            
+            for row in self.data:
+                if row[column] is None:
+                    row[column] = average
+            
+            
 
     def get(self, row_idx: int, col_name: str):
         """

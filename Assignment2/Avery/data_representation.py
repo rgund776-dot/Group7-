@@ -22,20 +22,8 @@ class DataTable:
                     else:
                         data_row[header[index]] = float(item)
                 self.data.append(data_row)
-        self._fill_missing(missing)
-        # print("missing data",missing)
-        # print("data", self.data)
-
-    # def _fill_missing(self, missing: list):
-    #     averages = {}
-    #     for _, feature in missing:
-    #         if feature not in averages:
-    #             known = [r[feature] for r in self.data if r[feature] is not None]
-    #             averages[feature] = sum(known) / len(known)
-    #     for row_idx, col in missing:
-    #         self.data[row_idx][col] = averages[col]       
+        self._fill_missing(missing, reference_table)
     
-
     def _fill_missing(self, missing, reference_table=None):
         #mean of the VALID values of each column, before filling anything
         self.valid_means = {}

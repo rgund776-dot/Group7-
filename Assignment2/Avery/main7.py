@@ -38,7 +38,7 @@ def main():
 
     # Load datasets
     historical = DataTable(DATA_DIR / "cancer_historical1.csv")
-    new_cases = DataTable(DATA_DIR / "cancer_new_cases1.csv")
+    new_cases = DataTable(DATA_DIR / "cancer_new_cases1.csv", historical)
     labels = DataTable(DATA_DIR / "cancer_new_cases_labels1.csv")
 
     # Create predictors

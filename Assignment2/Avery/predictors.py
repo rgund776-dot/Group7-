@@ -20,7 +20,7 @@ class Predictor(ABC):
             patient_value = patient[feature]
             if patient_value < feature_min or patient_value > feature_max:
                 raise OutOfSampleError(
-                    f"{feature} with value {patient_value} is outside of historical range[{feature_min}, {feature_max}]")
+                    f"OutOfSampleError: {feature} with value {patient_value} is outside of historical range[{feature_min}, {feature_max}]")
 
     @abstractmethod
     def predict(self, patient):

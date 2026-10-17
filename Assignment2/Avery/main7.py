@@ -19,23 +19,6 @@ def calculate_accuracy(predictions, actual):
 
 
 def main():
-
-    # test = DataTable(DATA_DIR / "test.csv")
-    # get_value= test.get(1, 'Feature3')
-    # print('value ',get_value)
-    # get_column = test.get_column('TumorType')
-    # print('column ',get_column)
-    # get_row = test.get_row(2)
-    # print('row ',get_row)
-    # get_column_names = test.get_column_names()
-    # print('names ',get_column_names)
-    # get_column_average = test.get_column_average('Feature1')
-    # print('average ',get_column_average)
-    # get_column_min = test.get_column_min('Feature3')
-    # print('min ',get_column_min)
-    # get_column_max = test.get_column_max('Feature3')
-    # print('max ',get_column_max)
-
     # Load datasets
     historical = DataTable(DATA_DIR / "cancer_historical1.csv")
     new_cases = DataTable(DATA_DIR / "cancer_new_cases1.csv", historical)
@@ -48,13 +31,11 @@ def main():
     mode_predictions = []
     nn_predictions = []
 
-
     # Predict every new case
     for i in range(len(new_cases.data)):
 
         patient = new_cases.get_row(i)
-        
-
+    
         try:
             mode_predictions.append(
                 mode_predictor.predict(patient)
@@ -67,13 +48,8 @@ def main():
         except OutOfSampleError as e:
             print(e)
 
-
     # Get true labels
     actual_labels = labels.get_column("TumorType")
-
-    # print("Mode:",mode_predictions)
-
-    # print("Nearest Neighbor:", nn_predictions)
 
     # Accuracy
     print(

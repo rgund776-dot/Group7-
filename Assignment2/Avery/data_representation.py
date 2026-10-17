@@ -53,7 +53,12 @@ class DataTable:
         """
         Return all values in a column.
         """
-        return [row[col_name] for row in self.data]
+        values = []
+        
+        for row in self.data:
+            values.append(row[col_name])
+            
+        return values
 
     def get_row(self, row_idx: int) -> dict:
         """
@@ -71,18 +76,19 @@ class DataTable:
         """
         Return average of a column.
         """
-        total = sum(self.get_column(col_name))
-        count = len(self.get_column(col_name))
-        return total/count
+        values = self.get_column(col_name)
+        return sum(values) / len(values)
 
     def get_column_min(self, col_name: str) -> float:
         """
         Return minimum value of a column.
         """
-        return min(self.get_column(col_name))
+        values = self.get_column(col_name)
+        return min(values)
 
     def get_column_max(self, col_name: str) -> float:
         """
         Return maximum value of a column.
         """
-        return max(self.get_column(col_name))
+        values = self.get_column(col_name)
+        return max(values)

@@ -9,13 +9,9 @@ class Weapon(ABC):
         self.name = name
         self.damage = damage
 
-    @abstractmethod
     def save(self, filename: str) -> None:
-        """
-        Save weapon information to a file.
-        Subclasses must implement this method.
-        """
-        pass
+        with open(filename, "a") as file:
+            file.write(self.__repr__() + "\n")
 
     @abstractmethod
     def __repr__(self) -> str:
@@ -33,14 +29,6 @@ class MeleeWeapon(Weapon):
     """
     Represents a melee weapon.
     """
-
-    def __init__(self, name: str, damage: int):
-        super().__init__(name, damage)
-
-    def save(self, filename: str) -> None:
-        with open(filename, "a") as file:
-            file.write(self.__repr__() + "\n")
-
     def __repr__(self) -> str:
         return f"MeleeWeapon,{self.name},{self.damage}"
 
@@ -52,10 +40,6 @@ class RangedWeapon(Weapon):
     def __init__(self, name: str, damage: int, range: int):
         super().__init__(name, damage)
         self.range = range
-
-    def save(self, filename: str) -> None:
-        with open(filename, "a") as file:
-            file.write(self.__repr__() + "\n")
 
     def __repr__(self) -> str:
         return f"RangedWeapon,{self.name},{self.damage},{self.range}"
@@ -69,10 +53,6 @@ class MagicWeapon(RangedWeapon):
     def __init__(self, name: str, damage: int, range: int, mana_cost: int):
         super().__init__(name, damage, range)
         self.mana_cost = mana_cost
-
-    def save(self, filename: str) -> None:
-        with open(filename, "a") as file:
-            file.write(self.__repr__() + "\n")
 
     def __repr__(self) -> str:
         return f"MagicWeapon,{self.name},{self.damage},{self.range},{self.mana_cost}"

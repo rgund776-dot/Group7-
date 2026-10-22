@@ -45,13 +45,14 @@ class RangedWeapon(Weapon):
         return f"RangedWeapon,{self.name},{self.damage},{self.range}"
 
 
-class MagicWeapon(RangedWeapon):
+class MagicWeapon(Weapon):
     """
     Represents a magic weapon.
     """
 
     def __init__(self, name: str, damage: int, range: int, mana_cost: int):
-        super().__init__(name, damage, range)
+        super().__init__(name, damage)
+        self.range = range
         self.mana_cost = mana_cost
 
     def __repr__(self) -> str:

@@ -7,7 +7,6 @@ class Weapon(ABC):
         self.name = name
         self.dmg = dmg
 
-    @abstractmethod
     def save(self, filename: str) -> None:
         # Forces subclasses to implement file saving
         pass
@@ -36,7 +35,7 @@ class Melee(Weapon):
         # String format used for saving and debugging
         return f"Melee_Weapon,{self.name},{self.dmg}"
 
-class Range(Weapon):
+class Ranged(Weapon):
 
     def __init__(self, name: str, dmg: int, range: int):
         super().__init__(name, dmg)
@@ -50,14 +49,14 @@ class Range(Weapon):
 
     def __repr__(self) -> str:
         # String format used for saving and debugging
-        return f"Melee_Weapon,{self.name},{self.dmg},{self.range}"
+        return f"Ranged_Weapon,{self.name},{self.dmg},{self.range}"
 
-#below is assuming magic weapons are catergorized under ranged
-class Magic(Range):
+class Magic(Weapon):
 
     def __init__(self, name: str, dmg: int, range: int, mana: int):
-        super().__init__(name, dmg, range)
+        super().__init__(name, dmg)
         #magic attribute 
+        self.range = range 
         self.mana = mana
 
     def save(self, filename: str) -> None:

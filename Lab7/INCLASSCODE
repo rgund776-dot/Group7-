@@ -50,3 +50,9 @@ assert len(rate) == 20
 print("Expected first five", expected_rate[:5])
 print("Actual first five", rate[:5])
 print("PASSED: Daily reutrn calculations")
+UPDATE 
+mean_rate, median_rate, std_rate = calculate_statistics(rate)
+assert np.isclose(mean_rate, np.mean(rate))
+assert np.isclose(median_rate, np.median(rate))
+assert np.isclose(std_rate, np.std(rate))
+print("PASSED: MEAN, MEDIAN AND STD")

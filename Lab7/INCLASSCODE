@@ -65,3 +65,11 @@ assert worst_day == np.argmin(rate)
 assert rate[best_day] == np.max(rate)
 assert rate[worst_day] == np.min(rate)
 print("PRINT PASSED BEST AND WORST DAYS")
+UPDATE 
+up_days, down_days = count_trading_days(rate)
+expected_up = np.sum(rate > 0)
+expected_down = np.sum(rate < 0)
+assert up_days == expected_up
+assert down_days == expected_down
+assert up_days + down_days + np.sum(rate == 0) == 20 
+print("PASSED BOOLEAN MASKED AND TRADE DAY COUNTS")

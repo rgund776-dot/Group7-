@@ -1,0 +1,44 @@
+#TASK 1
+import numpy as np
+
+def load_data(filename):
+    # Load the CSV file
+    data = np.genfromtxt(
+        filename,
+        delimiter=",",
+        names=True,
+        dtype=None,
+        encoding="utf-8"
+    )
+
+    # Extract the four columns
+    date = data["Date"]
+    openp = data["Open"]
+    closep = data["Close"]
+    vol = data["Volume"]
+
+    print("Task 1 - Loaded Stock Data")
+    print("Dates:", date)
+    print("Opening Prices:", openp)
+    print("Closing Prices:", closep)
+    print("Trading Volumes:", vol)
+
+    return date, openp, closep, vol, data
+
+
+date, openp, closep, vol,data = load_data("stock_prices_intro.csv")
+
+
+print("Actual:", len(date), "records")
+print("Column names:", data.dtype.names) 
+
+assert len(data) == 20 
+assert data.dtype.names == ('Date', 'Open', 'Close', 'Volume') 
+assert len(date) == 20 
+assert len(openp) == 20 
+assert len(closep) == 20 
+assert len(vol) == 20 
+assert np.issubdtype(openp.dtype, np.number)
+assert np.issubdtype(closep.dtype, np.number)
+assert np.issubdtype(vol.dtype, np.number)
+print("PASSED CSV LOADING AND EXTRACTION")

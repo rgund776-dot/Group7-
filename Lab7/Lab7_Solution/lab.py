@@ -65,12 +65,6 @@ def find_best_worst_days(date, openp, closep, rate):
     print("Closing Price:", closep[best_day])
     print("Daily Return:", round(rate[best_day], 2), "%")
 
-    # print("\nTask 4 - Worst Trading Day")
-    print("Date:", date[worst_day])
-    print("Opening Price:", openp[worst_day])
-    print("Closing Price:", closep[worst_day])
-    print("Daily Return:", round(rate[worst_day], 2), "%")
-
     return best_day, worst_day
 
 

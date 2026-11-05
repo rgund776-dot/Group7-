@@ -73,3 +73,10 @@ assert up_days == expected_up
 assert down_days == expected_down
 assert up_days + down_days + np.sum(rate == 0) == 20 
 print("PASSED BOOLEAN MASKED AND TRADE DAY COUNTS")
+UPDATE 
+cum_return = calculate_cumulative_return(rate)
+expected_return = (np.prod(1 + rate / 100) -1 )* 100 
+assert np.isclose(cum_return,expected_return)
+print("Expected", expected_return)
+print("Actual", cum_return)
+print("PASSED CUMLATIVE RETURN")

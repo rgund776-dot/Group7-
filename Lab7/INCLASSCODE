@@ -56,3 +56,12 @@ assert np.isclose(mean_rate, np.mean(rate))
 assert np.isclose(median_rate, np.median(rate))
 assert np.isclose(std_rate, np.std(rate))
 print("PASSED: MEAN, MEDIAN AND STD")
+UPDATE 
+best_day, worst_day = find_best_worst_days(
+    date, openp, closep, rate
+)
+assert best_day == np.argmax(rate)
+assert worst_day == np.argmin(rate)
+assert rate[best_day] == np.max(rate)
+assert rate[worst_day] == np.min(rate)
+print("PRINT PASSED BEST AND WORST DAYS")

@@ -42,3 +42,11 @@ assert np.issubdtype(openp.dtype, np.number)
 assert np.issubdtype(closep.dtype, np.number)
 assert np.issubdtype(vol.dtype, np.number)
 print("PASSED CSV LOADING AND EXTRACTION")
+UPDATE 
+rate = calculate_returns(date, openp, closep)
+expected_rate = (closep - openp) / openp * 100 
+assert np.allclose(rate, expected_rate)
+assert len(rate) == 20
+print("Expected first five", expected_rate[:5])
+print("Actual first five", rate[:5])
+print("PASSED: Daily reutrn calculations")

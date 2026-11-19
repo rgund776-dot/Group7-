@@ -17,7 +17,7 @@ def task2_access_data(df):
     column_series = df['wage-increase-first-year']
     first_by_index = column_series.iloc[0]
     first_by_name = df.loc[0, 'wage-increase-first-year']
-    first_five = column_series.iloc[0:5]
+    first_five = df.iloc[0:5]
     col_first_second_year = df[['wage-increase-first-year', 'wage-increase-second-year']]
 
     # These values will be changes when running the test cases

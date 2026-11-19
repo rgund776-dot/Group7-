@@ -67,3 +67,17 @@ print("task 3 all test passed")
 
 
 print("Task 2 all tests passed")
+
+df = task1_load_explore()
+
+task2_results = task2_access_data(df)
+
+task3_results = task3_filter_data(df)
+
+assert df.shape == (57,17)
+assert len(task2_results) == 10
+assert len(task3_results['good']) == 37
+assert len(task3_results['bad']) == 20 
+assert len(task3_results["first_year_holiday"]) == 28 
+
+print ("complete lab 8")

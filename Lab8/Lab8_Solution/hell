@@ -10,3 +10,31 @@ assert isinstance(df["wage_increase_first_year"], pd.Series)
 assert df["wage_increase_first_year"].iloc[0] == 5.0 
 
 print("Task 1 all tests passed ") 
+
+result = task2_access_data(df)
+
+assert isinstance(result["column_series"], pd.Series)
+assert len(result["column_series"]) == 57
+assert result['first_by_index'] == 5.0 
+assert result['first_by_name'] == 5.0 
+assert result['first_five'].shape == (5, 17)
+assert result['col_first_second_year'].shape == (57,2)
+assert result['specific_value_loc'] == 5.8
+assert result['multiple_rows_loc'].shape == (3,17)
+assert result['multiple_rows_loc'].iloc[0,0] == 2.0
+assert result["multiple_rows_iloc"].shape == (3,17)
+assert result["multiple_rows_iloc"].iloc[0,0] == 2.0 
+assert result["multiple_rows_iloc"].iloc[0,1] == 4.5
+
+one_row = df.iloc[[0]]
+assert one_row.shape == (1,17)
+
+multiple_rows = df.iloc[[0,1,2]]
+assert multiple_rows.shape == (3,17)
+
+no_rows = df.iloc[0:0]
+assert no_rows.empty
+assert no_rows.shape == (0,17)
+
+
+print("Task 2 all tests passed")

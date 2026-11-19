@@ -36,5 +36,34 @@ no_rows = df.iloc[0:0]
 assert no_rows.empty
 assert no_rows.shape == (0,17)
 
+result == task3_filter_data(df)
+
+assert len(result['good']) == 37 
+assert (result["good"]['class'] == "good").all()
+
+assert len(result["bad"]) == 20
+assert (result['bad']['class'] == "bad").all()
+
+assert len(result['first_year']) == 41 
+assert(result['first_year']['wage-increase-first-year'] > 2.5).all()
+
+assert len(result['holiday']) == 37 
+assert (result['holiday']['statutory-holidays'] > 10).all() 
+
+assert len(result['combined']) == 28 
+assert (result["combined"]["wage-increase-first-year"] > 2.5).all()
+
+assert(result["combined"]["statutory_holidays"] > 10).all()
+
+assert round(result["avg_score"], 4) == 3.8036
+
+assert result["max_score"] == 7.0 
+           
+one_match = df[df["wage-increase-first-year"] == 7.0]
+assert len(one_match) == 1
+           
+print("task 3 all test passed")
+
+
 
 print("Task 2 all tests passed")

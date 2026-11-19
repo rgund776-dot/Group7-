@@ -1,0 +1,12 @@
+df = task1_load_explore()
+
+assert isinstance(df, pd.DataFrame)
+assert df.head().shape == (5, 17)
+assert "class" in df.columns
+assert df.shape == (57,17)
+assert len(df.dtypes) == 17
+assert df.dtypes.index.equals(df.columns)
+assert isinstance(df["wage_increase_first_year"], pd.Series)
+assert df["wage_increase_first_year"].iloc[0] == 5.0 
+
+print("Task 1 all tests passed ") 

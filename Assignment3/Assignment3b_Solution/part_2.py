@@ -18,7 +18,7 @@ class RaceSimulator:
         'Tmax': [10, 10, 10],
         'alpha': [0.5, 0.25, 0.0625],
         'beta': [15, 25, 55]
-       }, index=['Soft', 'Medium', 'Hard'])
+       }, index=['soft', 'medium', 'hard'])
 
 
     def tire_time(self, age, Tmin, Tmax, alpha, beta):
@@ -50,8 +50,10 @@ class RaceSimulator:
         Returns:
             Total time added from tire degradation and pit stops.
         """
+        cleaned_tires = [s.strip().lower() for s in tire_types]
+
         if len(stint_lengths) != 3 or len(tire_types) != 3:
-            raise ValueError("A race must have 3 stints")
+            raise ValueError("Need exactly 3 stints and 3 tire types")
         
         if sum(stint_lengths) != 60:
             raise ValueError("Total number of laps must be 60") 
@@ -61,11 +63,9 @@ class RaceSimulator:
         
         if len(set(tire_types)) < 2:
             raise ValueError("At least 2 different tire types must be used")
-        
-        for tire in tire_types:
-            if tire not in self.tire_data.index:
-                raise ValueError("Invalid Tire Type")
-            
+ 
+        if any(t not in self.tire_data.index for t in cleaned_tires):
+            raise ValueError("Unknown tire type")   
         stint_frames = [] 
     
         lap_number = 1 
@@ -73,7 +73,7 @@ class RaceSimulator:
         for i in range(3): 
         
             length = stint_lengths[i]
-            tire = tire_types[i]
+            tire = cleaned_tires[i]
         
             Tmin = self.tire_data.loc[tire, 'Tmin']
             Tmax = self.tire_data.loc[tire, 'Tmax']
@@ -112,7 +112,7 @@ class RaceSimulator:
     
         return total_time
 
-def plot_tires(simulator):
+def plot_tires(simulator: RaceSimulator):
     """
     Plot tire degradation curves for all tire compounds.
 
@@ -122,6 +122,10 @@ def plot_tires(simulator):
     Returns:
         None.
     """
+    if not isinstance(simulator, RaceSimulator):
+        raise TypeError(
+            f"value must be a RaceSimulator, got {type(simulator).__name__}"
+        )
     ages = np.arange(0,61)
     
     for tire in simulator.tire_data.index: 
@@ -143,7 +147,7 @@ def plot_tires(simulator):
     plt.show()
 
 
-def find_best_strategy(simulator):
+def find_best_strategy(simulator: RaceSimulator):
     """
     Test all valid race strategies and find the one
     with the minimum total time added.
@@ -154,6 +158,10 @@ def find_best_strategy(simulator):
     Returns:
         The strategy with the lowest total tire and pit time.
     """
+    if not isinstance(simulator, RaceSimulator):
+        raise TypeError(
+            f"value must be a RaceSimulator, got {type(simulator).__name__}"
+        )
     best_time = float('inf')
     best_stint_lengths = None
     best_tire_types = None 

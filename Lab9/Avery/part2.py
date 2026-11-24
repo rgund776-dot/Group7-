@@ -13,8 +13,8 @@ def task1_load_explore():
     main_shape = data_main.shape
     prices_shape = data_prices.shape
 
-    main_info = data_main.info()
-    prices_info = data_prices.info()
+    # main_info = data_main.info()
+    # prices_info = data_prices.info()
 
     main_na = data_main.isna().sum()
     prices_na = data_prices.isna().sum()
@@ -66,7 +66,12 @@ def task2_merge_data(main_df, prices_df):
 
 
 def analyze_merges(merge_results):
-    inner_merged, left_merged, right_merged, outer_merged = merge_results
+
+    inner_merged = merge_results["inner_merged"]
+    left_merged = merge_results["left_merged"]
+    right_merged = merge_results["right_merged"] 
+    outer_merged = merge_results["outer_merged"]
+
     merges = {"inner": inner_merged, 
               "left": left_merged,
               "right": right_merged, 
@@ -88,16 +93,22 @@ def analyze_merges(merge_results):
     price_keys = set(right_merged["item_id"])  
 
     in_both = main_keys & price_keys
+    # print("🚀 ~ analyze_merges ~ in_both:", in_both)
     only_main = main_keys - price_keys
+    print("🚀 ~ analyze_merges ~ only_main:", only_main)
     only_prices = price_keys - main_keys
+    print("🚀 ~ analyze_merges ~ only_prices:", only_prices)
 
     # Row-level counts (a main item can have many reviews)
     both_rows = int(outer_merged["item_id"].isin(in_both).sum())
     only_main_rows = int(outer_merged["item_id"].isin(only_main).sum())
     only_prices_rows = int(outer_merged["item_id"].isin(only_prices).sum())
-    
-    pass
+
 
 df1, df2 = task1_load_explore()
 
-task2_merge_data(df1, df2)
+data_merge = task2_merge_data(df1, df2)
+
+# data_merge["inner_merged"].shape
+
+df_analyze = analyze_merges(data_merge)
